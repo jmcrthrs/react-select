@@ -62,6 +62,7 @@ const Select = createClass({
 		clearRenderer: PropTypes.func,        // create clearable x element
 		clearValueText: stringOrNode,               // title for the "clear" control
 		clearable: PropTypes.bool,            // should it be possible to reset value
+		closeMenuOnSelect: PropTypes.bool,    // Whether to close the menu after an item is selected
 		deleteRemoves: PropTypes.bool,        // whether backspace removes an item if there is no text input
 		delimiter: PropTypes.string,          // delimiter to use to join multiple values for the hidden field value
 		disabled: PropTypes.bool,             // whether the Select is disabled or not
@@ -615,6 +616,9 @@ const Select = createClass({
 			}, () => {
 				this.addValue(value);
 			});
+			if (this.props.closeMenuOnSelect) {
+				this.closeMenu();
+			}			
 		} else {
 			this.setState({
 				isOpen: false,
